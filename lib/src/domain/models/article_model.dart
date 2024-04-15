@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:nyt_app_example/src/domain/models/media_model.dart';
 
 part "article_model.g.dart";
 
@@ -22,4 +23,41 @@ class ArticleModel {
   String? title;
   String? abstract;
   List<String>? desFacet;
+  List<String>? orgFacet;
+  List<String>? perFacet;
+  List<String>? geoFacet;
+  List<MediaModel>? media;
+  int? etaId;
+
+  ArticleModel(
+      {this.uri,
+      this.url,
+      this.id,
+      this.assetId,
+      this.source,
+      this.publishedDate,
+      this.updated,
+      this.section,
+      this.subsection,
+      this.nyTdSection,
+      this.adxKeywords,
+      this.column,
+      this.byline,
+      this.type,
+      this.title,
+      this.abstract,
+      this.desFacet,
+      this.orgFacet,
+      this.perFacet,
+      this.geoFacet,
+      this.media,
+      this.etaId});
+
+  factory ArticleModel.fromJson(json) => _$ArticleModelFromJson(json);
+
+  toJson() => _$ArticleModelFromJson(this);
+
+  static List<ArticleModel> fromJsonList(List? json) {
+    return json?.map((e) => ArticleModel.fromJson(e)).toList() ?? [];
+  }
 }
